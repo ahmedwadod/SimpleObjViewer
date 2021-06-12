@@ -133,9 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Readme.md" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utility\Camera.cpp" />
     <ClCompile Include="src\Utility\EBO.cpp" />
