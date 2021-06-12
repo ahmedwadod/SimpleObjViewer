@@ -88,7 +88,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Shaders\VertexShader.txt" />
-    <Text Include="Shaders\FragmentShader.txt" />
+    <Text Include="Shaders\VertexShader.glsl" />
+    <Text Include="Shaders\FragmentShader.glsl" />
   </ItemGroup>
 </Project>

@@ -161,8 +161,16 @@
     <ClInclude Include="src\Utility\VBO.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Shaders\FragmentShader.txt" />
-    <Text Include="Shaders\VertexShader.txt" />
+    <None Include="Shaders\FragmentShader.glsl">
+      <FileType>Document</FileType>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="Shaders\VertexShader.glsl">
+      <FileType>Document</FileType>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
