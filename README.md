@@ -1,5 +1,6 @@
 # SimpleObjViewer
-Simple OBJ model viewer written in C++.
+Simple OBJ model viewer written in C++.<br/><br/>
+![SimpleObjViewer](https://github.com/ahmedwadod/SimpleObjViewer/blob/master/Screenshots/screenshot1.png?raw=true)
 
 # About
 This project is a hobby project that implements OpenGL to load and view 3D model in Wavefront's .obj format.
