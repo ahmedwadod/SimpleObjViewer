@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 	};
 
 	// Creating the camera
-	Camera cam = Camera(glm::vec3(0.0f, 0.0f, 40.0f));
+	Camera cam = Camera(model.GetOptimalCameraPosition(0));
 
 	float speed = 0.05f;
 	// Enable depth

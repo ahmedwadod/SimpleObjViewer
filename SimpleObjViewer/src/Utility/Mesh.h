@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include <math.h>
+
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<glm/glm.hpp>
@@ -24,6 +27,7 @@ protected:
 	glm::mat4 _matrix = glm::mat4(1.0f);
 	GLsizei _indicesCount;
 	ShadersProgram* _shader;
+	float _biggestPointY, _lowestPointY, _biggestPointX, _lowestPointX;
 public:
 	Mesh();
 	//Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices);
@@ -34,4 +38,5 @@ public:
 	void DrawWithTexture(Texture2D* texturePtr, const char* modelMatUniformName);
 	void Draw(const char* modelMatrixUniformName);
 	void Delete();
+	glm::vec3 GetOptimalCameraPosition(float extraZ);
 };
