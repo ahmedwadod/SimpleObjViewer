@@ -3,7 +3,8 @@ Simple OBJ model viewer written in C++.<br/><br/>
 ![SimpleObjViewer](https://github.com/ahmedwadod/SimpleObjViewer/blob/master/Screenshots/screenshot1.png?raw=true)
 
 # About
-This project is a hobby project that implements OpenGL to load and view 3D model in Wavefront's .obj format.
+This project is a hobby project that implements OpenGL to load and view 3D model in Wavefront's .obj format.<br/>
+[Download Windows x64 binaries v0.0.1](https://github.com/ahmedwadod/SimpleObjViewer/releases/tag/v0.0.1)
 
 # Usage
 At the current point you can load a model using the command line `objviewer.exe <filename>`<br/>
