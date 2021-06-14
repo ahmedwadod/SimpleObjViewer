@@ -5,6 +5,7 @@
 #include <GLFW\glfw3.h>
 #include "VBO.h"
 
+/// Vertex Array Object
 class VAO {
 public:
 	GLuint ID;

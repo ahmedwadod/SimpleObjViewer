@@ -7,13 +7,14 @@
 #include "Utility\Mesh.h"
 #include "Utility\ObjLoader.h"
 
+// Helper function to convert hex colors to float
 GLfloat HexToFloat(int hex) {
 	return (float)hex / 255.0f;
 }
 #define _CC HexToFloat
 
 // Usage text
-auto usage = "objviewer <filename>";
+auto usage = "Usage:\nobjviewer <filename>";
 
 // Light vertices
 glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -62,18 +63,22 @@ int main(int argc, char* argv[])
 		return 1;
 	};
 
-	// Creating the camera
+	// Creating the camera and set position the optimal given by the mesh
 	Camera cam = Camera(model.GetOptimalCameraPosition(0));
 
 	float speed = 0.05f;
+
 	// Enable depth
 	glEnable(GL_DEPTH_TEST);
+
+	// Main loop
 	while (!app.WindowShouldClose()) {
 		// Background Color
 		glClearColor(_CC(0x11), _CC(0x67), _CC(0xb1), 1.0f);
 		// Clear bits
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		// Handle input
 		if (app.KeyPress(GLFW_KEY_LEFT_SHIFT))
 		{
 			speed = 0.1f;
@@ -118,11 +123,14 @@ int main(int argc, char* argv[])
 		model.Draw("modelMat");
 		cam.Render(app.GetWindowWidth(), app.GetWindowHeight(), shader, "cameraMat");
 
+		// Swap Buffers
 		app.SwapBuffers();
 
+		// Poll window events
 		app.PollEvents();
 	}
 
+	// Destroy objects before closing
 	model.Delete();
 	texture.Delete();
 	shader->Delete();
