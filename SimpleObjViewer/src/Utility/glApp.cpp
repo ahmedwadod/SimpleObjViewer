@@ -21,6 +21,12 @@ bool GLApp::CreateWindow(int width, int height, const char* windowName, GLFWmoni
 	}
 	glfwMakeContextCurrent(_window);
 
+	// Set window resize event callback
+	glfwSetWindowSizeCallback(_window, [](GLFWwindow* window, int width, int height)->void
+	{
+		glViewport(0, 0, width, height);
+	});
+
 	// Load OpenGL
 	gladLoadGL();
 
@@ -52,11 +58,13 @@ void GLApp::SwapBuffers()
 
 int GLApp::GetWindowWidth()
 {
+	glfwGetWindowSize(_window, &_width, &_height);
 	return _fullscreen ? _monitorWidth : _width;
 }
 
 int GLApp::GetWindowHeight()
 {
+	glfwGetWindowSize(_window, &_width, &_height);
 	return _fullscreen ? _monitorHeight : _height;
 }
 
