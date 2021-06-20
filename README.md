@@ -17,12 +17,14 @@ At the current point you can load a model using the command line `objviewer.exe 
 - `DOWN` Go backwards
 - `LEFT` Go left
 - `RIGHT` Go right
+- `ESC` Close
+- `F` Toggle Fullscreen
 
 # Roadmap
-- Initialize the project
-- Add setup code (From my old OpenGL projects)
-- Add basic functionality
-- Add better camera positioning 
+- Initialize the project ✔
+- Add setup code (From my old OpenGL projects) ✔
+- Add basic functionality ✔
+- Add better camera positioning ✔
 - Add mouse controls
 - Add Command-line parser
 - Add imGUI
