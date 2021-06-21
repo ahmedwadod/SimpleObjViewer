@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 	// Initializing the App
 	GLApp app = GLApp();
 	app.AllowFullscreen();
-	if (!app.CreateWindow(800, 800, "Simple OBJ Viewer", NULL, NULL)) {
+	if (!app.CreateWindow(1200, 800, "Simple OBJ Viewer", NULL, NULL)) {
 		std::cout << "ERROR: Couldn't start the app!";
 		app.Destroy();
 		return 1;
@@ -77,10 +77,16 @@ int main(int argc, char* argv[])
 		return 1;
 	};
 
+	// Get filename
+	char fname[255] = {};
+	char ext[30] = {};
+	_splitpath_s(argv[1], NULL, 0, NULL, 0, fname, 255 * sizeof(char), ext, 30 * sizeof(char));
+	strcat_s(fname, ext);
+
 	// Creating the camera and set position the optimal given by the mesh
 	Camera cam = Camera(model.GetOptimalCameraPosition(0));
 
-	float speed = 0.05f;
+	float speed = 0.03f;
 
 	// Enable depth
 	glEnable(GL_DEPTH_TEST);
@@ -95,14 +101,6 @@ int main(int argc, char* argv[])
 			// Clear bits
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			// Handle input
-			if (app.KeyPress(GLFW_KEY_LEFT_SHIFT))
-			{
-				speed = 0.1f;
-			}
-			else {
-				speed = 0.01f;
-			}
 			if (app.KeyPress(GLFW_KEY_D))
 			{
 				model.Rotate(speed * 5.0f, glm::vec3(0.0f, 1.0f, 0.0f));
@@ -146,8 +144,12 @@ int main(int argc, char* argv[])
 			cam.Render(app.GetWindowWidth(), app.GetWindowHeight(), shader, "cameraMat");
 
 			// render your GUI
-			ImGui::Begin("Demo window");
-			ImGui::Button("Hello!");
+			ImGui::Begin(fname);
+			ImGui::SetWindowSize({ 331, 236 }, 2);
+			ImGui::SetWindowPos({ 1, 563 }, 2);
+			ImGui::Text("Controls:\nW: Move up\nS: Move down\nA: Rotate clockwise\nD: Rotate anticlockwise\nUP: Go forward\nDOWN: Go backwards\nLEFT: Go left\nRIGHT: Go right\n");
+			ImGui::TextColored({ 0.0f, 0.0f, 1.0f, 1.0f }, "\nChange");
+			ImGui::SliderFloat("Speed", &speed, 0.001f, 0.1f);
 			ImGui::End();
 
 			// Render dear imgui into screen
