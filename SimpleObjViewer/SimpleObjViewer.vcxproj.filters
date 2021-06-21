@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{67abd5f1-59b7-424f-a799-52ffbd5ad030}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\imGUI">
+      <UniqueIdentifier>{9baded2e-4b68-4462-95f2-6fc2cebaa424}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -54,6 +57,24 @@
     <ClCompile Include="src\Utility\stb.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\imGUI\imgui.cpp">
+      <Filter>Source Files\imGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imGUI\imgui_demo.cpp">
+      <Filter>Source Files\imGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imGUI\imgui_draw.cpp">
+      <Filter>Source Files\imGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imGUI\imgui_impl_glfw.cpp">
+      <Filter>Source Files\imGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imGUI\imgui_impl_opengl3.cpp">
+      <Filter>Source Files\imGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imGUI\imgui_widgets.cpp">
+      <Filter>Source Files\imGUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Utility\ShadersProgram.h">
@@ -83,9 +104,33 @@
     <ClInclude Include="src\Utility\ObjLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\imGUI\imgui_impl_glfw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imGUI\imgui_impl_opengl3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imGUI\imgui_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imGUI\imstb_rectpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imGUI\imstb_textedit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imGUI\imstb_truetype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imGUI\imconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imGUI\imgui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Shaders\VertexShader.glsl" />
-    <Text Include="Shaders\FragmentShader.glsl" />
+    <None Include="Shaders\FragmentShader.glsl" />
+    <None Include="Shaders\VertexShader.glsl" />
   </ItemGroup>
 </Project>

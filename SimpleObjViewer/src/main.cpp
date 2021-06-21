@@ -6,6 +6,9 @@
 #include "Utility\Camera.h"
 #include "Utility\Mesh.h"
 #include "Utility\ObjLoader.h"
+#include "imGUI\imgui.h"
+#include "imGUI\imgui_impl_opengl3.h"
+#include "imGUI\imgui_impl_glfw.h"
 
 // Helper function to convert hex colors to float
 GLfloat HexToFloat(int hex) {
@@ -40,6 +43,17 @@ int main(int argc, char* argv[])
 		app.Destroy();
 		return 1;
 	};
+
+	// Setup Dear ImGui context
+	const char* glsl_version = "#version 330";
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO &io = ImGui::GetIO();
+	// Setup Platform/Renderer bindings
+	ImGui_ImplGlfw_InitForOpenGL(app.GetWindow(), true);
+	ImGui_ImplOpenGL3_Init();
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
 
 	// Creating and compiling the shaders program
 	ShadersProgram* shader = new ShadersProgram("Shaders\\VertexShader.glsl", "Shaders\\FragmentShader.glsl");
@@ -119,9 +133,23 @@ int main(int argc, char* argv[])
 			cam.Position += -speed * cam.Up;
 		}
 
+		// feed inputs to dear imgui, start new frame
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
 		// Rednering
 		model.Draw("modelMat");
 		cam.Render(app.GetWindowWidth(), app.GetWindowHeight(), shader, "cameraMat");
+
+		// render your GUI
+		ImGui::Begin("Demo window");
+		ImGui::Button("Hello!");
+		ImGui::End();
+
+		// Render dear imgui into screen
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		// Swap Buffers
 		app.SwapBuffers();
