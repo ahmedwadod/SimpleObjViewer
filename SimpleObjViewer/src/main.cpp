@@ -87,78 +87,85 @@ int main(int argc, char* argv[])
 
 	// Main loop
 	while (!app.WindowShouldClose()) {
-		// Background Color
-		glClearColor(_CC(0x11), _CC(0x67), _CC(0xb1), 1.0f);
-		// Clear bits
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		// Check if window not minimized
+		if (app.GetWindowHeight() != 0 && app.GetWindowWidth() != 0) 
+		{
+			// Background Color
+			glClearColor(_CC(0x11), _CC(0x67), _CC(0xb1), 1.0f);
+			// Clear bits
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Handle input
-		if (app.KeyPress(GLFW_KEY_LEFT_SHIFT))
-		{
-			speed = 0.1f;
-		}
-		else {
-			speed = 0.01f;
-		}
-		if (app.KeyPress(GLFW_KEY_D))
-		{
-			model.Rotate(speed * 5.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-		}
-		if (app.KeyPress(GLFW_KEY_A))
-		{
-			model.Rotate(speed * 5.0f, glm::vec3(0.0f, -1.0f, 0.0f));
-		}
-		if (app.KeyPress(GLFW_KEY_UP))
-		{
-			cam.Position += speed * cam.Orientation;
-		}
-		if (app.KeyPress(GLFW_KEY_DOWN))
-		{
-			cam.Position += -speed * cam.Orientation;
-		}
-		if (app.KeyPress(GLFW_KEY_LEFT))
-		{
-			cam.Position += -speed * glm::vec3(1.0f, 0.0f, 0.0f);
-		}
-		if (app.KeyPress(GLFW_KEY_RIGHT))
-		{
-			cam.Position += speed * glm::vec3(1.0f, 0.0f, 0.0f);
-		}
-		if (app.KeyPress(GLFW_KEY_W))
-		{
-			cam.Position += speed * cam.Up;
-		}
-		if (app.KeyPress(GLFW_KEY_S))
-		{
-			cam.Position += -speed * cam.Up;
-		}
+			// Handle input
+			if (app.KeyPress(GLFW_KEY_LEFT_SHIFT))
+			{
+				speed = 0.1f;
+			}
+			else {
+				speed = 0.01f;
+			}
+			if (app.KeyPress(GLFW_KEY_D))
+			{
+				model.Rotate(speed * 5.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+			}
+			if (app.KeyPress(GLFW_KEY_A))
+			{
+				model.Rotate(speed * 5.0f, glm::vec3(0.0f, -1.0f, 0.0f));
+			}
+			if (app.KeyPress(GLFW_KEY_UP))
+			{
+				cam.Position += speed * cam.Orientation;
+			}
+			if (app.KeyPress(GLFW_KEY_DOWN))
+			{
+				cam.Position += -speed * cam.Orientation;
+			}
+			if (app.KeyPress(GLFW_KEY_LEFT))
+			{
+				cam.Position += -speed * glm::vec3(1.0f, 0.0f, 0.0f);
+			}
+			if (app.KeyPress(GLFW_KEY_RIGHT))
+			{
+				cam.Position += speed * glm::vec3(1.0f, 0.0f, 0.0f);
+			}
+			if (app.KeyPress(GLFW_KEY_W))
+			{
+				cam.Position += speed * cam.Up;
+			}
+			if (app.KeyPress(GLFW_KEY_S))
+			{
+				cam.Position += -speed * cam.Up;
+			}
+		
+			// feed inputs to dear imgui, start new frame
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
 
-		// feed inputs to dear imgui, start new frame
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+			// Rednering
+			model.Draw("modelMat");
+			cam.Render(app.GetWindowWidth(), app.GetWindowHeight(), shader, "cameraMat");
 
-		// Rednering
-		model.Draw("modelMat");
-		cam.Render(app.GetWindowWidth(), app.GetWindowHeight(), shader, "cameraMat");
+			// render your GUI
+			ImGui::Begin("Demo window");
+			ImGui::Button("Hello!");
+			ImGui::End();
 
-		// render your GUI
-		ImGui::Begin("Demo window");
-		ImGui::Button("Hello!");
-		ImGui::End();
+			// Render dear imgui into screen
+			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		// Render dear imgui into screen
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-		// Swap Buffers
-		app.SwapBuffers();
+			// Swap Buffers
+			app.SwapBuffers();
+		}
 
 		// Poll window events
 		app.PollEvents();
 	}
 
 	// Destroy objects before closing
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 	model.Delete();
 	texture.Delete();
 	shader->Delete();
