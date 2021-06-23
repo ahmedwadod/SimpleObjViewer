@@ -135,6 +135,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\imGUI\imgui.cpp" />
+    <ClCompile Include="src\imGUI\imgui_demo.cpp" />
+    <ClCompile Include="src\imGUI\imgui_draw.cpp" />
+    <ClCompile Include="src\imGUI\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\imGUI\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\imGUI\imgui_widgets.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utility\Camera.cpp" />
     <ClCompile Include="src\Utility\EBO.cpp" />
@@ -149,6 +155,14 @@
     <ClCompile Include="src\Utility\VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\imGUI\imconfig.h" />
+    <ClInclude Include="src\imGUI\imgui.h" />
+    <ClInclude Include="src\imGUI\imgui_impl_glfw.h" />
+    <ClInclude Include="src\imGUI\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\imGUI\imgui_internal.h" />
+    <ClInclude Include="src\imGUI\imstb_rectpack.h" />
+    <ClInclude Include="src\imGUI\imstb_textedit.h" />
+    <ClInclude Include="src\imGUI\imstb_truetype.h" />
     <ClInclude Include="src\Utility\Camera.h" />
     <ClInclude Include="src\Utility\EBO.h" />
     <ClInclude Include="src\Utility\glApp.h" />
