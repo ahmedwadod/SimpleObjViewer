@@ -144,13 +144,22 @@ int main(int argc, char* argv[])
 			cam.Render(app.GetWindowWidth(), app.GetWindowHeight(), shader, "cameraMat");
 
 			// render your GUI
-			ImGui::Begin(fname);
-			ImGui::SetWindowSize({ 331, 236 }, 2);
-			ImGui::SetWindowPos({ 1, 563 }, 2);
+			ImGui::Begin("Control Panel");
+			ImGui::SetWindowCollapsed(2, 2);
+			ImGui::SetWindowSize({ 331, 550 }, 2);
+			ImGui::SetWindowPos({ 1, 5 }, 2);
+			ImGui::Text("File: %s\n", fname);
 			ImGui::Text("Controls:\nW: Move up\nS: Move down\nA: Rotate clockwise\nD: Rotate anticlockwise\nUP: Go forward\nDOWN: Go backwards\nLEFT: Go left\nRIGHT: Go right\n");
 			ImGui::TextColored({ 0.0f, 0.0f, 1.0f, 1.0f }, "\nChange");
 			ImGui::SliderFloat("Speed", &speed, 0.001f, 0.1f);
+			ImGui::Text("\n\n");
+			ImGui::ColorPicker3("Light Color", (float*)&lightColor);
 			ImGui::End();
+
+			// Activate the shader to edit the uniform of light
+			shader->Activate();
+			// Light data
+			glUniform3f(shader->GetUniform("lightColor"), lightColor.x, lightColor.y, lightColor.z);
 
 			// Render dear imgui into screen
 			ImGui::Render();
