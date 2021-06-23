@@ -145,7 +145,7 @@ int main(int argc, char* argv[])
 
 			// render your GUI
 			ImGui::Begin("Control Panel");
-			ImGui::SetWindowCollapsed(2, 2);
+			ImGui::SetWindowCollapsed(true, 2);
 			ImGui::SetWindowSize({ 331, 550 }, 2);
 			ImGui::SetWindowPos({ 1, 5 }, 2);
 			ImGui::Text("File: %s\n", fname);
