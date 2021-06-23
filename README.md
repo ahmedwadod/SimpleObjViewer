@@ -8,7 +8,7 @@ This project is a hobby project that implements OpenGL to load and view 3D model
 
 # Usage
 At the current point you can load a model using the command line `objviewer.exe <filename>`<br/>
-You can toggle the Control Panel on the top left side of the window.
+You can toggle the Control Panel on the top left side of the window.<br/>
 <b>Controls:</b>
 - `W` Go up
 - `A` Rotate model left
